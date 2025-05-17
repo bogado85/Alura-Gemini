@@ -1,6 +1,9 @@
 # Alura-Gemini
 Desafio do Imersão Alura - Google Gemini
 
+Obs: Se baixar somente o arquivo Sargento_Bot.ipynb e importar para o Colab, será possível testar.
+Utilizando o Google Studio AI, solicitei para criar uma interface html para ficar mais acessível e amigável. Testei no Visual Studio Code e "na minha máquina funcionou" 😆
+
 # Sargento Bot: Assistente de Informações do Serviço Militar
 
 Este projeto implementa um chatbot utilizando a API Google Generative AI (Gemini) com a persona de um Sargento do Exército Brasileiro. O bot é especializado em fornecer informações sobre o Serviço Militar Inicial Obrigatório e Voluntário, com foco na área da 9ª Região Militar e Comando Militar do Leste, bem como sobre alistamento, deveres de reservista e ExAR.
