@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sargento Bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Sargento Bot</h1>
+        <p>Olá, Combatente! Sou o Sargento Bot. Estou aqui para tirar sua dúvida sobre o Serviço Militar.</p>
+
+        <div class="chat-box" id="chat-box">
+            <!-- Mensagens serão adicionadas aqui pelo JavaScript -->
+        </div>
+
+        <div class="input-area">
+            <textarea id="user-input" placeholder="Qual a sua dúvida (Digite 'selva' para sair)..."></textarea>
+            <button id="send-button">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const chatBox = document.getElementById('chat-box');
+
+        function displayMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message');
+            messageElement.classList.add(sender); // Adiciona classe 'user' ou 'bot'
+            messageElement.innerHTML = `<strong>${sender === 'user' ? 'Você' : 'Sargento Bot'}:</strong> ${message.replace(/\n/g, '<br>')}`;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Rola para o final
+        }
+
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (message === "") return; // Não envia mensagens vazias
+
+            displayMessage('user', message);
+            userInput.value = ""; // Limpa o input
+
+            if (message.toLowerCase() === 'selva') {
+                displayMessage('bot', "Até mais e tenha um ótimo dia. Selva!");
+                userInput.disabled = true;
+                sendButton.disabled = true;
+                return;
+            }
+
+            try {
+                // Envia apenas a nova mensagem. O backend (objeto chat) gerencia o histórico.
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                displayMessage('bot', data.response);
+
+            } catch (error) {
+                console.error('Erro ao enviar mensagem:', error);
+                displayMessage('bot', 'Desculpe, ocorreu um erro ao processar sua solicitação.');
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+
+        // Permite enviar com Enter na área de texto
+        userInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' && !event.shiftKey) { // Shift+Enter para nova linha
+                event.preventDefault(); // Impede a quebra de linha padrão
+                sendMessage();
+            }
+        });
+
+         // Mensagem inicial do bot
+         displayMessage('bot', "Olá, Combatente! Sou o Sargento Bot. Estou aqui para tirar sua dúvida sobre o Serviço Militar.");
+
+    </script>
+</body>
+</html>
