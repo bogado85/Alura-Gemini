@@ -456,8 +456,8 @@ O bot busca informações principalmente em fontes oficiais do Exército Brasile
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <URL_DO_SEU_REPOSITORIO>
-    cd <pasta_do_seu_repositorio>
+    git clone https://github.com/bogado85
+    cd Alura-Gemini
     ```
 
 2.  **Crie e ative um ambiente virtual (recomendado):**
@@ -504,19 +504,3 @@ Para encerrar a conversa no contexto do bot, digite `selva`.
 ## Licença
 
 Este projeto está sob a licença [Nome da Licença, por exemplo: MIT]. Consulte o arquivo `LICENSE` para mais detalhes.
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-Markdown
-IGNORE_WHEN_COPYING_END
-
-Observações:
-
-Lembre-se de substituir <URL_DO_SEU_REPOSITORIO> no README.md pela URL real do seu repositório GitHub.
-
-Considere adicionar um arquivo LICENSE ao seu repositório (por exemplo, uma licença MIT) e referenciá-lo no README.md.
-
-O gerenciamento de histórico de conversa neste exemplo Flask é feito pelo próprio objeto chat da biblioteca google-generativeai. Para um aplicativo multiusuário real, você precisaria implementar um sistema para associar históricos de conversa a usuários específicos (usando sessões do Flask, um banco de dados, etc.). O código fornecido funciona bem para um único usuário por vez ou para demonstração.
-
-Pronto, combatente! Agora você tem os arquivos necessários para a página web e um README claro para o seu projeto no GitHub. Selva!
