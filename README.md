@@ -85,4 +85,4 @@ Para encerrar a conversa no contexto do bot, digite `selva`.
 
 ## Licença
 
-Este projeto está sob a licença [Nome da Licença, por exemplo: MIT]. Consulte o arquivo `LICENSE` para mais detalhes.
+Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
